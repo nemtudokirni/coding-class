@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nyariemma</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#about">about me</a>
+            <a href="#works">works</a>
+            <a href="#contact">contact</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2 id="about me">about me</h2>
+            <p>I am Emma, an illustrator and animator and I try to make this website work.</p>
+        </section>
+        <section>
+            <h2 id="works">works</h2>
+            <img src="concept_thumbnail.jpg" onclick="openOverview('concept')" alt="concept" width="300" height="300">
+
+            <img src="print_thumbnail.jpg" onclick="openOverview('print')" alt="print" width="300" height="300">
+
+            <div id="concept">
+  <h2>concept</h2>
+  <img src="02_thumbnails/02_thumbnail_01.jpg" onclick="openLightboxFromAlbum('concept',0)" alt="02_01" width="400" height="400">
+  <img src="02_thumbnails/02_thumbnail_02.jpg" onclick="openLightboxFromAlbum('concept',1)" alt="02_02" width="400" height="400">
+  <img src="02_thumbnails/02_thumbnail_03.jpg" onclick="openLightboxFromAlbum('concept',2)" alt="02_03" width="400" height="400">
+  <img src="02_thumbnails/02_thumbnail_04.jpg" onclick="openLightboxFromAlbum('concept',2)" alt="02_04" width="400" height="400">
+  <img src="02_thumbnails/02_thumbnail_05.jpg" onclick="openLightboxFromAlbum('concept',2)" alt="02_05" width="400" height="400">
+  <img src="02_thumbnails/02_thumbnail_06.jpg" onclick="openLightboxFromAlbum('concept',2)" alt="02_06" width="400" height="400">
+  <br><button onclick="closeOverview()">Back</button>
+</div>
+
+<h2>print</h2>
+  <img src="03_thumbnails/03_thumbnail_01.jpg" onclick="openLightboxFromAlbum('print',0)" alt="02_01" width="400" height="400">
+  <img src="03_thumbnails/03_thumbnail_02.jpg" onclick="openLightboxFromAlbum('print',1)" alt="02_02" width="400" height="400">
+  <img src="03_thumbnails/03_thumbnail_03.jpg" onclick="openLightboxFromAlbum('print',2)" alt="02_03" width="400" height="400">
+  <img src="03_thumbnails/03_thumbnail_04.jpg" onclick="openLightboxFromAlbum('print',2)" alt="02_04" width="400" height="400">
+  <img src="03_thumbnails/03_thumbnail_05.jpg" onclick="openLightboxFromAlbum('print',2)" alt="02_05" width="400" height="400">
+  <br><button onclick="closeOverview()">Back</button>
+</div>
+
+<div id="lightbox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); display:flex; justify-content:center; align-items:center; flex-direction:column; z-index:1000;">
+  <div>
+    <button onclick="prev()">Prev</button>
+    <button onclick="next()">Next</button>
+    <button onclick="closeLightbox()">Close</button>
+  </div>
+</div>
+
+<script>
+
+    const albums = {
+       concept: ["concept/02_01.jpg","concept/02_02.jpg","concept/02_03.jpg","concept/02_04.jpg","concept/02_05.jpg","concept/02_06.jpg"],
+       print: ["print/03_01.jpg","print/03_02.jpg","print/03_03.jpg","print/03_04.jpg","print/03.05.jpg"]
+    };
+
+    let currentAlbum = null;
+    let currentIndex = 0;
+
+    function openOverview(albumName) {
+        currentAlbum = albumName;
+            document.getElementById(albumName).style.display = "block";
+        }
+        function openOverview() {
+        if (currentAlbum) {
+            document.getElementById(currentAlbum).style.display = "none";
+            currentAlbum = null;
+        }
+    }
+
+    function openLightboxFromAlbum(albumName, index) {
+    currentAlbum = albumName;
+    currentIndex = index;
+    document.getElementById("lightbox-img").src = albums[albumName][index];
+    document.getElementById("lightbox").style.display = "block";
+  }
+
+  function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+  }
+
+  function next() {
+    currentIndex = (currentIndex + 1) % albums[currentAlbum].length;
+    document.getElementById("lightbox-img").src = albums[currentAlbum][currentIndex];
+  }
+
+  function prev() {
+    currentIndex = (currentIndex - 1 + albums[currentAlbum].length) % albums[currentAlbum].length;
+    document.getElementById("lightbox-img").src = albums[currentAlbum][currentIndex];
+  }
+
+  
+
+</script>
+
+    
+
+            
+        </section>
+        <h2 id="contact">contact</h2>
+        <p>Text me only if you have a good job offer!</p>
+        <p>nyariemma@gmail.com
+            <br>@nemtudokirni</p>
+        <br>
+        <p>bye bye</p>
+        </section>
+    </main>
+</body>
+
+</html>
